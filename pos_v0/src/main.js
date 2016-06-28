@@ -7,7 +7,7 @@ function printInventory(inputs) {
         const {name, count, price, unit} = item;
         const sum = count * price;
         total += sum;
-        const itemDetail = '名称：' + name + '，数量：' + count + unit + '，单价：' + price.toFixed(2) + '(元)，小计：' + sum.toFixed(2) + '(元)\n';
+        const itemDetail = `名称：${name}，数量：${count}${unit}，单价：${price.toFixed(2)}(元)，小计：${sum.toFixed(2)}(元)\n`;
         outputs +=  itemDetail;
     });
 
