@@ -1,30 +1,14 @@
 "use strict";
 function printInventory(inputs) {
-    let total = 0;
-    let promotionTotal = 0;
-    let itemDetail = `***<没钱赚商店>购物清单***\n打印时间：${getTime()}\n----------------------\n`;
-    let promotionItemDetail = '----------------------\n挥泪赠送商品：\n'
+    let cartItems = getCartItems(inputs);
 
-    getOutputItems(inputs).forEach((item) => {
-        let sum = 0;
-        let promotionCount = 0;
-
+    cartItems.forEach((item) => {
         if(item.count > 2 && isPromotion(item.barcode)) {
-            promotionCount = parseInt(item.count / 3, 10);
-            sum = (item.count - promotionCount) * item.price;
-            promotionItemDetail += `名称：${item.name}，数量：${promotionCount}${item.unit}\n`
-        } else {
-            sum = item.count * item.price;
+            item.promotionCount = parseInt(item.count / 3, 10);
+            item.isPromotion = true;
         }
-
-        total += sum;
-        promotionTotal += promotionCount * item.price;
-        itemDetail += `名称：${item.name}，数量：${item.count}${item.unit}，单价：${item.price.toFixed(2)}(元)，小计：${sum.toFixed(2)}(元)\n`;
     });
-
-    const bottomMsg = `----------------------\n总计：${total.toFixed(2)}(元)\n`;
-    const bottomPromotionMsg = `节省：${promotionTotal.toFixed(2)}(元)\n**********************`
-    console.log(`${itemDetail}${promotionItemDetail}${bottomMsg}${bottomPromotionMsg}`);
+    print(cartItems);
 }
 
 function isPromotion(barcode) {
@@ -32,16 +16,16 @@ function isPromotion(barcode) {
   return _.contains(promotionBarCodes, barcode);
 }
 
-function getOutputItems(inputs) {
+function getCartItems(inputs) {
     const inputMap = getInputMap(inputs);
-    let outputItems = [];
+    let cartItems = [];
 
     loadAllItems().forEach((item) => {
         if(_.has(inputMap, item.barcode)) {
-            outputItems.push(new OutputItem(item, inputMap[item.barcode]));
+            cartItems.push(new CartItem(item, inputMap[item.barcode]));
         }
     });
-    return outputItems;
+    return cartItems;
 }
 
 function getInputMap(inputs) {
@@ -61,6 +45,27 @@ function getInputMap(inputs) {
     return inputMap;
 }
 
-function getTime() {
-    return moment().format('YYYY[年]MM[月]DD[日] HH:mm:ss');
+function print(cartItems) {
+    const title = "***<没钱赚商店>购物清单***\n";
+    const time = `打印时间：${moment().format('YYYY[年]MM[月]DD[日] HH:mm:ss')}\n`;
+    const separateLine = "----------------------\n";
+    const promotionMsg = "挥泪赠送商品：\n"
+
+    let cartTotal = 0;
+    let promotionTotal = 0;
+    let cartItemsMsg = "";
+    let promotionItemsMsg = "";
+
+    cartItems.forEach((item) => {
+       const subTotal = item.price * (item.count - item.promotionCount);
+       cartTotal += subTotal;
+       cartItemsMsg += `名称：${item.name}，数量：${item.count}${item.unit}，单价：${item.price.toFixed(2)}(元)，小计：${subTotal.toFixed(2)}(元)\n`;
+       if(item.isPromotion) {
+           promotionTotal += item.price * item.promotionCount;
+           promotionItemsMsg += `名称：${item.name}，数量：${item.promotionCount}${item.unit}\n`;
+       }
+    });
+    const totalMsg = `总计：${cartTotal.toFixed(2)}(元)\n节省：${promotionTotal.toFixed(2)}(元)\n**********************`;
+
+    console.log(`${title}${time}${separateLine}${cartItemsMsg}${separateLine}${promotionMsg}${promotionItemsMsg}${separateLine}${totalMsg}`);
 }
