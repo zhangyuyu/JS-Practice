@@ -6,6 +6,7 @@
 
     <link rel="shortcut icon" type="image/png" href="../lib/jasmine-2.0.1/jasmine_favicon.png">
     <link rel="stylesheet" type="text/css" href="../lib/jasmine-2.0.1/jasmine.css">
+    <link rel="stylesheet" type="text/css" href="src/item.css">
 
     <script type="text/javascript" src="../lib/lodash-2.4.1/lodash.compat.js"></script>
     <script type="text/javascript" src="../lib/moment-2.8.1/moment-with-locales.js"></script>
@@ -16,6 +17,7 @@
     <!-- include source files here... -->
     <script type="text/javascript" src="src/model/item.js"></script>
     <script type="text/javascript" src="src/model/promotion.js"></script>
+    <script type="text/javascript" src="src/model/cartItem.js"></script>
 
     <script type="text/javascript" src="spec/fixtures.js"></script>
     <script type="text/javascript" src="src/main.js"></script>
@@ -26,5 +28,7 @@
 </head>
 
 <body>
+    <button onclick="printInventory()" id="button">Print Inventory</button><br>
+    <div id="output_id" > </div>
 </body>
 </html>

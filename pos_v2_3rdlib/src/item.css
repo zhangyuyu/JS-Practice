@@ -1,0 +1,12 @@
+body {
+    font-family: monospace;
+}
+
+#output_id {
+   color: #027b74;
+   padding: 2em 0.5em;
+}
+
+#button{
+    color: #b305b3;
+}
