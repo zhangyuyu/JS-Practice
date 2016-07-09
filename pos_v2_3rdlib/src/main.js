@@ -1,14 +1,9 @@
-"use strict";
-function printInventory() {
-    const inputs = ['ITEM000001',
-                    'ITEM000001',
-                    'ITEM000001',
-                    'ITEM000001',
-                    'ITEM000001',
-                    'ITEM000003-2',
-                    'ITEM000005',
-                    'ITEM000005',
-                    'ITEM000005'];
+document.getElementById("button").onclick = function(){
+    const inputs = document.getElementById("input_id").value.split(",");
+    document.getElementById("output_id").innerHTML = printInventory(inputs);
+};
+
+function printInventory(inputs) {
     const newline = "<br>"
     const title = `***<没钱赚商店>购物清单***${newline}`;
     const time = `打印时间：${moment().format('YYYY[年]MM[月]DD[日] HH:mm:ss')}${newline}`;
@@ -28,10 +23,7 @@ function printInventory() {
     });
     const totalMsg = `总计：${cartTotal.toFixed(2)}(元)${newline}节省：${promotionTotal.toFixed(2)}(元)${newline}**********************`;
 
-    const output = `${title}${time}${separateLine}${cartItemsMsg}${separateLine}${promotionMsg}${promotionItemsMsg}${separateLine}${totalMsg}`;
-    document.addEventListener("click", function(){
-        document.getElementById("output_id").innerHTML = output;
-    });
+    return `${title}${time}${separateLine}${cartItemsMsg}${separateLine}${promotionMsg}${promotionItemsMsg}${separateLine}${totalMsg}`;
 }
 
 function isPromotion(barcode) {

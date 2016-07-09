@@ -4,9 +4,16 @@ body {
 
 #output_id {
    color: #027b74;
-   padding: 2em 0.5em;
 }
 
 #button{
     color: #b305b3;
+    margin: 1em 0;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+#input_id {
+    height: 2em;
+    width: 80%;
 }

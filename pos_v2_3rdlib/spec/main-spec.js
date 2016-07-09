@@ -1,8 +1,19 @@
 describe('pos', function () {
-    var allItems, dateDigitToString;
+    var allItems, inputs, dateDigitToString;
 
     beforeEach(function () {
         allItems = loadAllItems();
+        inputs = [
+                    'ITEM000001',
+                    'ITEM000001',
+                    'ITEM000001',
+                    'ITEM000001',
+                    'ITEM000001',
+                    'ITEM000003-2',
+                    'ITEM000005',
+                    'ITEM000005',
+                    'ITEM000005'
+                ];
         dateDigitToString = function (num) {
             return num < 10 ? '0' + num : num;
         };
@@ -10,7 +21,7 @@ describe('pos', function () {
 
     it('should print correct text', function () {
 
-        document.getElementById("button").click();
+       var output = printInventory(inputs);
 
        var currentDate = new Date(),
             year = dateDigitToString(currentDate.getFullYear()),
@@ -22,7 +33,7 @@ describe('pos', function () {
             formattedDateString = year + '年' + month + '月' + date + '日 ' + hour + ':' + minute + ':' + second;
 
         var expectText =
-            '***&lt;没钱赚商店&gt;购物清单***<br>' +
+            '***<没钱赚商店>购物清单***<br>' +
             '打印时间：' + formattedDateString + '<br>' +
             '----------------------<br>' +
             '名称：雪碧，数量：5瓶，单价：3.00(元)，小计：12.00(元)<br>' +
@@ -37,6 +48,6 @@ describe('pos', function () {
             '节省：7.50(元)<br>' +
             '**********************';
 
-        expect(document.getElementById("output_id").innerHTML).toEqual(expectText);
+        expect(output).toEqual(expectText);
     });
 });
