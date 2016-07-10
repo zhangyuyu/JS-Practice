@@ -26,11 +26,6 @@ function printInventory(inputs) {
     return `${title}${time}${separateLine}${cartItemsMsg}${separateLine}${promotionMsg}${promotionItemsMsg}${separateLine}${totalMsg}`;
 }
 
-function isPromotion(barcode) {
-  const promotionBarCodes = loadPromotions()[0].barcodes;
-  return _.contains(promotionBarCodes, barcode);
-}
-
 function getCartItems(inputs) {
     const inputMap = getInputMap(inputs);
     let cartItems = [];
@@ -51,11 +46,7 @@ function getInputMap(inputs) {
         const barcode = inputArr[0];
         const count = inputArr[1] ? Number(inputArr[1]): 1;
 
-        if(_.has(inputMap, barcode)) {
-            inputMap[barcode] += count;
-        } else {
-            inputMap[barcode] = count;
-        }
+        inputMap[barcode] = _.has(inputMap, barcode) ? (inputMap[barcode] + count) : count;
     });
     return inputMap;
 }
