@@ -1,10 +1,14 @@
 var express = require('express');
-var app = express();
+var bodyParser = require('body-parser');
 var printInventory = require('./src/main.js')
 
-app.get('/', function (req, res) {
-  const inputs = "ITEM000001,ITEM000001,ITEM000001,ITEM000001,ITEM000001,ITEM000003-2,ITEM000005,ITEM000005,ITEM000005".split(",");
-  res.send(printInventory(inputs));
+var app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post('/receipt', function (req, res) {
+    inputs = req.body.items.split(",")
+    res.send(printInventory(inputs));
 });
 
 app.listen(3000, function () {

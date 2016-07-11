@@ -133,3 +133,10 @@ items:[
 ### 第一步实现了浏览器发送get请求功能,输入在程序中是硬编码
 1. 运行`node app.js`
 2. 访问`http://localhost:3000/`即可得到清单内容.
+### 第二步实现了利用postman发送post请求,
+1. 运行`node app.js`
+2. 利用postman
+* method: post
+* url: `http://localhost:3000/receipt`
+* body 选用 x-www-form-urlencoded
+`items: ITEM000001,ITEM000001,ITEM000001,ITEM000001,ITEM000001,ITEM000003-2,ITEM000005,ITEM000005,ITEM000005`
