@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6cd72a6b-ce57-46c3-96ae-e823039f4cc4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <ignored path="JSPractise.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -188,9 +188,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -201,6 +200,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -212,11 +212,6 @@
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/pos_v_express/src/model" />
-    </key>
   </component>
   <component name="RunManager">
     <configuration default="false" name="main.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="/usr/local/bin/node" path-to-js-file="main.js" working-dir="$PROJECT_DIR$/pos_v0.2/src">
@@ -522,7 +517,14 @@
       <option name="project" value="LOCAL" />
       <updated>1468738441474</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="[Yu] - remove .idea junk">
+      <created>1468738748602</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1468738748602</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -573,7 +575,8 @@
     <MESSAGE value="[Yu] - pos_express - send post request with inputs: inputJson" />
     <MESSAGE value="[Yu] - pos_express - output json" />
     <MESSAGE value="[Yu] - pos_express - output application/json || text/html" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Yu] - pos_express - output application/json || text/html" />
+    <MESSAGE value="[Yu] - remove .idea junk" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Yu] - remove .idea junk" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
