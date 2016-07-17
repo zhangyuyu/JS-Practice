@@ -138,5 +138,20 @@ items:[
 2. 利用postman
 * method: post
 * url: `http://localhost:3000/receipt`
-* body 选用 x-www-form-urlencoded
-`items: ITEM000001,ITEM000001,ITEM000001,ITEM000001,ITEM000001,ITEM000003-2,ITEM000005,ITEM000005,ITEM000005`
+* header: `Content-Type application/json`
+* body 选用 raw
+```
+{
+   "items" : [
+        "ITEM000001",
+        "ITEM000001",
+        "ITEM000001",
+        "ITEM000001",
+        "ITEM000001",
+        "ITEM000003-2",
+        "ITEM000005",
+        "ITEM000005",
+        "ITEM000005"
+    ]
+}
+```
