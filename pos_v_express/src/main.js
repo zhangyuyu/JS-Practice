@@ -1,29 +1,26 @@
-const moment = require('../../lib/moment-2.8.1/moment-with-locales.js');
 const _ = require('../../lib/lodash-2.4.1/lodash.compat.js');
 const loadAllItems = require('../spec/fixtures.js').loadAllItems;
 const CartItem = require("./model/cartItem.js");
+const Receipt = require("./model/receipt.js");
+const ReceiptItem = require("./model/receiptItem.js");
+const Present = require("./model/present.js");
+const Total = require("./model/total.js");
 
 module.exports = function printInventory(inputs) {
-    const newline = "<br>"
-    const title = `***<没钱赚商店>购物清单***${newline}`;
-    const time = `打印时间：${moment().format('YYYY[年]MM[月]DD[日] HH:mm:ss')}${newline}`;
-    const separateLine = `----------------------${newline}`;
-    const promotionMsg = `挥泪赠送商品：${newline}`
-
     let cartTotal = 0;
-    let promotionTotal = 0;
-    let cartItemsMsg = "";
-    let promotionItemsMsg = "";
+    let itemsInCart = [];
+    let presents = [];
 
     getCartItems(inputs).forEach((item) => {
         cartTotal += item.getSubTotal();
-        promotionTotal += item.getPromotionSubTotal();
-        cartItemsMsg += item.getItemDetail();
-        promotionItemsMsg += item.getPromotionDetail();
-    });
-    const totalMsg = `总计：${cartTotal.toFixed(2)}(元)${newline}节省：${promotionTotal.toFixed(2)}(元)${newline}**********************`;
 
-    return `${title}${time}${separateLine}${cartItemsMsg}${separateLine}${promotionMsg}${promotionItemsMsg}${separateLine}${totalMsg}`;
+        itemsInCart.push(new ReceiptItem(item.name, item.count, item.unit, item.price, item.getSubTotal()));
+        if(item.isPromotion()){
+            presents.push(new Present(item.name, item.promotionCount, item.unit));
+        }
+    });
+
+    return new Receipt(itemsInCart, presents)
 }
 
 function getCartItems(inputs) {

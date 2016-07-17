@@ -8,27 +8,15 @@ module.exports = class CartItem {
         this.unit = item.unit;
         this.price = item.price || 0.00;
         this.count = count || 0;
-        this.promotionCount = this.count > 2 && this.isPromotion(this.barcode) ? parseInt(this.count / 3, 10) : 0;
+        this.promotionCount = this.count > 2 && this.isPromotion() ? parseInt(this.count / 3, 10) : 0;
     }
 
     getSubTotal() {
         return this.price * (this.count - this.promotionCount);
     };
 
-    getPromotionSubTotal() {
-        return this.promotionCount > 0 ? this.price * this.promotionCount : 0;
-    };
-
-    getItemDetail() {
-        return `名称：${this.name}，数量：${this.count}${this.unit}，单价：${this.price.toFixed(2)}(元)，小计：${this.getSubTotal().toFixed(2)}(元)<br>`;
-    };
-
-    getPromotionDetail() {
-        return this.promotionCount > 0 ? `名称：${this.name}，数量：${this.promotionCount}${this.unit}<br>` : "";
-    };
-
-    isPromotion(barcode) {
+    isPromotion() {
       const promotionBarCodes = loadPromotions()[0].barcodes;
-      return _.contains(promotionBarCodes, barcode);
+      return _.contains(promotionBarCodes, this.barcode);
     };
 }
