@@ -4,4 +4,8 @@ module.exports = class Present {
         this.count = count;
         this.countUnit = countUnit;
     }
+
+     getPresentDetail() {
+        return this.count > 0 ? `名称：${this.name}，数量：${this.count}${this.countUnit}<br>` : "";
+     };
 }

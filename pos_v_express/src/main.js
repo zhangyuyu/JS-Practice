@@ -6,21 +6,27 @@ const ReceiptItem = require("./model/receiptItem.js");
 const Present = require("./model/present.js");
 const Total = require("./model/total.js");
 
-module.exports = function printInventory(inputs) {
-    let cartTotal = 0;
+module.exports = function printInventory(inputs, accept) {
     let itemsInCart = [];
     let presents = [];
 
     getCartItems(inputs).forEach((item) => {
-        cartTotal += item.getSubTotal();
-
-        itemsInCart.push(new ReceiptItem(item.name, item.count, item.unit, item.price, item.getSubTotal()));
         if(item.isPromotion()){
             presents.push(new Present(item.name, item.promotionCount, item.unit));
         }
+        itemsInCart.push(new ReceiptItem(item.name, item.count, item.unit, item.price, item.getSubTotal()));
     });
 
-    return new Receipt(itemsInCart, presents)
+    const receipt = new Receipt(itemsInCart, presents);
+
+    if(accept === "text/html"){
+        return receipt.toText();
+    }
+
+    if(accept === "application/xml"){
+        return receipt.toText();
+    }
+    return receipt;
 }
 
 function getCartItems(inputs) {

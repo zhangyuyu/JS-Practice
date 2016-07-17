@@ -3,15 +3,15 @@ describe('pos', function () {
 
     beforeEach(function () {
         inputs = [
-                    'ITEM000001',
-                    'ITEM000001',
-                    'ITEM000001',
-                    'ITEM000001',
-                    'ITEM000001',
-                    'ITEM000003-2',
-                    'ITEM000005',
-                    'ITEM000005',
-                    'ITEM000005'
+                    "ITEM000001",
+                    "ITEM000001",
+                    "ITEM000001",
+                    "ITEM000001",
+                    "ITEM000001",
+                    "ITEM000003-2",
+                    "ITEM000005",
+                    "ITEM000005",
+                    "ITEM000005"
                 ];
         dateDigitToString = function (num) {
             return num < 10 ? '0' + num : num;
@@ -19,7 +19,7 @@ describe('pos', function () {
     });
 
     it('should print correct text', function () {
-       var output = printInventory(inputs);
+       var output = printInventory(inputs, "text/html");
 
        var currentDate = new Date(),
             year = dateDigitToString(currentDate.getFullYear()),

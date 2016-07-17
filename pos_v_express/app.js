@@ -7,7 +7,8 @@ app.use(bodyParser.json());
 
 app.post('/receipt', function (req, res) {
     const inputs = req.body.items;
-    res.send(printInventory(inputs));
+    const accept = req.headers.accept;
+    res.send(printInventory(inputs, accept));
 });
 
 app.listen(3000, function () {
